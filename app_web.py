@@ -4,7 +4,7 @@ import io
 from services.odoo_connection import OdooConnection
 from services.export_service import export_model_data
 from services.import_service import import_records
-from utils.logger import setup_logger, log_message
+from utils.logger import setup_logger, log_message_streamlit
 
 setup_logger()
 
