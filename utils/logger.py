@@ -10,8 +10,8 @@ def setup_logger():
                         format='%(asctime)s - %(levelname)s - %(message)s')
     LOG_TEXT = []
 
-def log_message(message):
-    print(message)
-    with open(log_file_path, 'a', encoding="utf-8") as log_file:
-        log_file.write(message + '\n')
+def log_message_streamlit(message):
+    st.session_state.setdefault('logs', [])
+    st.session_state['logs'].append(message)
+    st.write(f"📝 {message}")
  
