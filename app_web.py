@@ -85,8 +85,9 @@ if conn:
                         st.warning("You must select a field for update mode.")
 
                 if st.button("Import"):
+                    st.info("⏳ Import in progress...")
                     import_records(df[selected_fields], conn, selected_model, selected_fields, mode=operation_mode, search_field=search_field)
-                    st.success("Import completed.")
+                    st.success("✅ Import completed.")
 
             except Exception as e:
                 st.error(f"Error reading Excel file: {e}")
