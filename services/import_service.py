@@ -1,6 +1,6 @@
 import pandas as pd
 from utils.data_cleaner import limpiar_valor
-from utils.logger import log_message
+from utils.logger import log_message_streamlit
 
 def import_records(df, conn, model_name, selected_fields, mode="create", search_field=None):
     model_fields = conn.get_fields(model_name, attributes=["type", "relation"])
