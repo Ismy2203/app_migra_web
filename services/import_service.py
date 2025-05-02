@@ -19,7 +19,7 @@ def import_records(df, conn, model_name, selected_fields, mode="create", search_
                     if related_ids:
                         value = related_ids[0]
                     else:
-                        log_message(f"No se encontró Many2one para '{field}' con valor '{value}'")
+                        log_message_streamlit(f"No se encontró Many2one para '{field}' con valor '{value}'")
                         continue
 
                 record[field] = limpiar_valor(value)
@@ -27,18 +27,18 @@ def import_records(df, conn, model_name, selected_fields, mode="create", search_
         try:
             if mode == "create":
                 conn.create(model_name, record)
-                log_message(f"Registro creado: {record}")
+                log_message_streamlit(f"Registro creado: {record}")
             else:
                 search_value = row.get(search_field)
                 if pd.isna(search_value):
-                    log_message(f"Fila ignorada. Campo '{search_field}' vacío.")
+                    log_message_streamlit(f"Fila ignorada. Campo '{search_field}' vacío.")
                     continue
                 domain = [(search_field, "=", search_value)]
                 ids = conn.search(model_name, domain)
                 if ids:
                     conn.write(model_name, [ids[0]], record)
-                    log_message(f"Registro actualizado ID {ids[0]}: {record}")
+                    log_message_streamlit(f"Registro actualizado ID {ids[0]}: {record}")
                 else:
-                    log_message(f"No encontrado para actualizar: {domain}")
+                    log_message_streamlit(f"No encontrado para actualizar: {domain}")
         except Exception as e:
-            log_message(f"Error con fila: {e}")
+            log_message_streamlit(f"Error con fila: {e}")
