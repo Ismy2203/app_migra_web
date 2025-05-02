@@ -26,8 +26,8 @@ def import_records(df, conn, model_name, selected_fields, mode="create", search_
 
         try:
             if mode == "create":
-                conn.create(model_name, record)
-                log_message_streamlit(f"Registro creado: {record}")
+                result = conn.create(model_name, record)
+                log_message_streamlit(f"Registro creado: {record}. Resultado: {result}")
             else:
                 search_value = row.get(search_field)
                 if pd.isna(search_value):
@@ -36,8 +36,8 @@ def import_records(df, conn, model_name, selected_fields, mode="create", search_
                 domain = [(search_field, "=", search_value)]
                 ids = conn.search(model_name, domain)
                 if ids:
-                    conn.write(model_name, [ids[0]], record)
-                    log_message_streamlit(f"Registro actualizado ID {ids[0]}: {record}")
+                    result = conn.write(model_name, [ids[0]], record)
+                    log_message_streamlit(f"Registro actualizado ID {ids[0]}: {record}. Resultado: {result}")
                 else:
                     log_message_streamlit(f"No encontrado para actualizar: {domain}")
         except Exception as e:
