@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import io
 from services.odoo_connection import OdooConnection
 from services.export_service import export_model_data
 from services.import_service import import_records
@@ -47,7 +48,19 @@ if conn:
                 try:
                     df = export_model_data(conn, selected_model, selected_fields)
                     st.success("Export completed.")
-                    st.download_button("Download Excel", data=df.to_excel(index=False), file_name=f"{selected_model}.xlsx")
+            
+                    # ✅ Crear buffer Excel
+                    output = io.BytesIO()
+                    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+                        df.to_excel(writer, index=False)
+                    output.seek(0)
+            
+                    st.download_button(
+                        label="Download Excel",
+                        data=output,
+                        file_name=f"{selected_model}.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
                 except Exception as e:
                     st.error(f"Error during export: {e}")
 
