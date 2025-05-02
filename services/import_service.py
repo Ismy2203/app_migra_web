@@ -2,7 +2,7 @@ import pandas as pd
 from utils.data_cleaner import limpiar_valor
 from utils.logger import log_message_streamlit
 
-def convert_to_correct_type(value, field_type, model_fields, conn):
+def import_records(value, field_type, model_fields, conn):
     """
     Convierte el valor a su tipo adecuado según el tipo de campo de Odoo.
     Si el campo es 'many2one', simplemente devuelve el valor como int.
