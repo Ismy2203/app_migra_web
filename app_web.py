@@ -89,6 +89,8 @@ if conn:
                     import_records(df[selected_fields], conn, selected_model, selected_fields, mode=operation_mode, search_field=search_field)
                     st.success("✅ Import completed.")
 
+
+
             except Exception as e:
                 st.error(f"Error reading Excel file: {e}")
 else:
