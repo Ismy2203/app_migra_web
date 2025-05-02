@@ -1,5 +1,5 @@
 import pandas as pd
-from utils.logger import log_message
+from utils.logger import log_message_streamlit
 
 def export_model_data(conn, model_name, selected_fields):
     try:
