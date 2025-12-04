@@ -86,6 +86,16 @@
                                 </field>
                             </group>
                         </page>
+                        <page string="Mapeo de IDs">
+                            <field name="id_mapping_ids" readonly="1">
+                                <tree>
+                                    <field name="model_name"/>
+                                    <field name="source_id"/>
+                                    <field name="dest_id"/>
+                                    <field name="display_name"/>
+                                </tree>
+                            </field>
+                        </page>
                     </notebook>
                 </sheet>
             </form>

@@ -7,3 +7,4 @@
 "access_migration_origin_models_user","migration.origin.models user","model_migration_origin_models","base.group_user",1,1,1,1
 "access_migration_origin_fields_user","migration.origin.fields user","model_migration_origin_fields","base.group_user",1,1,1,1
 "access_ir_model_fields_user","ir.model.fields user","model_ir_model_fields","base.group_user",1,0,0,0
+"access_migration_id_mapping_user","migration.id.mapping user","model_migration_id_mapping","base.group_user",1,1,1,1

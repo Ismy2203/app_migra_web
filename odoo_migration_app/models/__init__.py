@@ -6,3 +6,4 @@ from . import migration_models
 from . import migration_origin_models
 from . import migration_origin_fields
 from . import ir_model_fields_inherit
+from . import migration_id_mapping
