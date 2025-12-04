@@ -1,0 +1,106 @@
+<odoo>
+    <!-- Vista lista -->
+    <record id="view_migration_list" model="ir.ui.view">
+        <field name="name">migration.list</field>
+        <field name="model">migration.config</field>
+        <field name="arch" type="xml">
+            <list string="Migraciones">
+                <field name="name" />
+                <field name="source_url" />
+                <field name="source_db" />
+                <field name="source_user" />
+                <field name="is_connected" />
+            </list>
+        </field>
+    </record>
+    <record id="view_migration_config_form" model="ir.ui.view">
+        <field name="name">migration.config.form</field>
+        <field name="model">migration.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de la Migración">
+                <sheet>
+                    <header>
+                        <button string="Conectar" name="connect" type="object" class="btn-primary" />
+                        <button string="Traer Modelos" name="get_origin_models" type="object" class="btn-secondary" />
+                        <button string="Iniciar Migración" name="start_migration" type="object" class="btn-primary" />
+                    </header>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" required="1" placeholder="Name..." force_save="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="source_url" />
+                            <field name="source_db" />
+                            <field name="source_user" />
+                            <field name="source_password" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Modelos a Migrar">
+                            <group>
+                                <field name="model_ids" options="{'no_create': False}" nolabel="1">
+                                    <list>
+                                        <field name="model_origin" />
+                                        <field name="model_dest" />
+                                    </list>
+                                    <form>
+                                        <sheet>
+                                            <header>
+                                                <button string="Traer Campos" name="action_get_fields" type="object" class="btn-secondary" />
+                                            </header>
+                                            <group>
+                                                <field name="model_origin" />
+                                                <field name="model_dest" />
+                                                <field name="field_ids" nolabel="1" options="{'no_create': False}">
+                                                    <list>
+                                                        <field name="field_origin_id" />
+                                                        <field name="field_dest_id" />
+                                                        <field name="field_type" invisible="is_relational" />
+                                                        <field name="is_relational" />
+                                                        <field name="related_model"/>
+                                                    </list>
+                                                    <form>
+                                                        <group>
+                                                            <group>
+                                                                <field name="field_origin_id" />
+                                                                <field name="field_dest_id" />
+                                                                <field name="field_type" invisible="is_relational" />
+                                                            </group>
+                                                            <group>
+                                                                <field name="is_relational" />
+                                                                <field name="related_model" />
+                                                            </group>
+                                                        </group>
+                                                        <group invisible="not is_relational">
+                                                            <field name="fields_to_search" widget="many2many_tags"/>
+                                                            <field name="not_found_action"/>
+                                                            <field name="duplicate_action"/>
+                                                        </group>
+                                                    </form>
+                                                </field>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="migration_config_action" model="ir.actions.act_window">
+        <field name="name">Configuración de Migración</field>
+        <field name="res_model">migration.config</field>
+        <field name="view_mode">list,form</field>
+        <field name="target">current</field>
+    </record>
+    <!-- Menús -->
+    <menuitem id="menu_migra_root" 
+              name="Migraciones" 
+              web_icon="odoo_migration_app,static/description/icon.png"/>
+
+    <menuitem id="migration_config_menu" name="Configuración de Migración" parent="menu_migra_root" action="migration_config_action" />
+</odoo>

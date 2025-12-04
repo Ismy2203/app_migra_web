@@ -1,0 +1,9 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+"access_migration_config_user","migration.config user","model_migration_config","base.group_user",1,1,1,1
+"access_migration_log_user","migration.log user","model_migration_log","base.group_user",1,1,1,1
+"access_migration_test_user","migration.test user","model_migration_test","base.group_user",1,1,1,1
+"access_migration_fields_user","migration.fields user","model_migration_fields","base.group_user",1,1,1,1
+"access_migration_model_user","migration.model user","model_migration_model","base.group_user",1,1,1,1
+"access_migration_origin_models_user","migration.origin.models user","model_migration_origin_models","base.group_user",1,1,1,1
+"access_migration_origin_fields_user","migration.origin.fields user","model_migration_origin_fields","base.group_user",1,1,1,1
+"access_ir_model_fields_user","ir.model.fields user","model_ir_model_fields","base.group_user",1,0,0,0

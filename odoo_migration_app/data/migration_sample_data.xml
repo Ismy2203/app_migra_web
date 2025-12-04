@@ -1,0 +1,10 @@
+<odoo>
+    <!-- Ejemplo de datos de muestra para inicializar la migración -->
+    <record id="migration_sample_config" model="migration.config">
+        <field name="name">Migración de Prueba 17/18</field>
+        <field name="source_url">https://odoo-imartinez-demo-v17.nip.ccit.es</field>
+        <field name="source_db">pruebas</field>
+        <field name="source_user">admin</field>
+        <field name="source_password">admin</field>
+    </record> 
+</odoo>
